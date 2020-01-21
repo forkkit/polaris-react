@@ -20,27 +20,19 @@
       bottom: calc(-1 * #{$position});
       left: calc(-1 * #{$position});
       display: block;
-      border: $stroke solid var(--p-focused);
-      transition: opacity duration(fast) var(--p-ease),
-        transform duration(fast) var(--p-ease);
-      opacity: 0;
-      transform: scale(0.8);
+      box-shadow: 0 0 0 -#{$offset} var(--p-focused);
+      transition: box-shadow duration(fast) var(--p-ease);
 
       @if $size == 'wide' {
-        border-radius: calc(
-          var(--p-border-radius-wide) + #{$position} - #{$offset} + #{rem(1px)}
-        );
+        border-radius: calc(var(--p-border-radius-wide) + #{$offset});
       } @else {
-        border-radius: calc(
-          var(--p-border-radius-base) + #{$position} - #{$offset} + #{rem(1px)}
-        );
+        border-radius: calc(var(--p-border-radius-base) + #{$offset});
       }
       pointer-events: none;
     }
   } @else if $style == 'focused' {
     &::after {
-      opacity: 1;
-      transform: scale(1);
+      box-shadow: 0 0 0 calc(#{$offset} * 2) var(--p-focused);
     }
   }
 }
